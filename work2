@@ -1,0 +1,23 @@
+class InvalidDataException(Exception):
+    pass
+class ProcessingException(Exception):
+    pass
+def generate_exception(data):
+    if isinstance(data, str):
+        raise InvalidDataException("Invalid data type: str")
+    elif isinstance(data, int):
+        raise ProcessingException("Processing exception occurred")
+    else:
+        raise Exception("Unknown exception occurred")
+def process_data(data):
+    try:
+        generate_exception(data)
+    except InvalidDataException as e:
+        print("Invalid data exception:", str(e))
+    except ProcessingException as e:
+        print("Processing exception:", str(e))
+    except Exception as e:
+        print("Unknown exception:", str(e))
+process_data("something")
+process_data(53)
+process_data(True)
